@@ -6,7 +6,7 @@
     <title>Display all users</title>
 </head>
 <body>
-    <h1>All users</h1>
+    <h1>All Users</h1>
     <table>
         <thead>
             <tr>
@@ -16,16 +16,25 @@
             </tr>
         </thead>
         <tbody>
-            {% for users in users %}
+            {% for user in users %}
             <tr>
-                <td>{{ users.name}}</td>
-                <td>{{ users.age}}</td>
-                <td>{{ users.email_address}}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.email_address }}</td>
             </tr>
             {% endfor %}
-
         </tbody>
     </table>
-    <a href="{{ url_for('home')}}">Back Home</a>
+
+<!-- This is a button that clears all users from the database.  
+     - The button is inside a form, so it sends a POST request when clicked.  
+     - The form submits data to the '/clear_users' route.  
+     - I added a function called - "onclick", this function shows a confirmation message before deleting all users. -->
+
+    <form action="{{ url_for('clear_users') }}" method="post">
+        <button type="submit" onclick="return confirm('Are you sure you want to delete all users?')">Clear All Users</button>
+    </form>
+
+    <a href="{{ url_for('home') }}">Back Home</a>
 </body>
 </html>
